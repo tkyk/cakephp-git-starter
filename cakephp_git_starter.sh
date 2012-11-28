@@ -51,6 +51,7 @@ which git > /dev/null || exit 1
 project_path=$1
 cakephp_version=$2
 mkdir -p $project_path
+project_path=$(cd $project_path; pwd)  #get absolute path
 
 error()
 {
