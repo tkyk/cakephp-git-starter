@@ -93,7 +93,9 @@ fix_include_path()
   cd $project_path
   sed -i.bak -e "s/\/*define('CAKE_CORE_INCLUDE_PATH'.*/define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'cakephp' . DS . 'lib');/" \
     app/webroot/{index,test}.php
-  rm -f app/webroot/{index,test}.php.bak
+  sed -i.bak -e "s/ini_set('include_path',.*/ini_set('include_path', \$root . \$ds . 'cakephp' . \$ds . 'lib' . PATH_SEPARATOR . ini_get('include_path'));/" \
+    app/Console/cake.php
+  rm -f app/webroot/{index,test}.php.bak app/Console/cake.php.bak
 }
 
 copy_empty_files()
